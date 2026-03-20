@@ -11,19 +11,24 @@
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <script type="text/babel">
       function Counter() {
         const [counter, setCounter] = React.useState(0);
 
+        if (counter > 20) {
+          return <p>Maior que 20</p>
+        }
         return (
           <>
             <p>Contador {counter}</p>
-
             <p>
-              {counter > 10 ? 'Maior que 10' = 'Menor ou igual a 10'}
+              {counter > 10 ? 'Maior que 10' : 'Menor ou igual a 10'}
             </p>
 
+            {counter > 15 && <p>Maior que 15</p>}
 
             <button onClick={() => setCounter(100)}>Atualizar</button>
             <button onClick={() =>
