@@ -24,12 +24,73 @@
         return (
           <div className="space-x-2">
             <input
-            ref={ref}
+              ref={ref}
               className="p-2 border"
               type="text"
               placeholder="Clique no botão para focar"
             />
-            <button onClick={handleClick} className="p-2 border">Focar no Input</button>
+            <button onClick={handleClick} className="p-2 border">
+              Focar no Input
+            </button>
+          </div>
+        );
+      }
+
+      function ScrollTracker() {
+        const containerRef = React.useRef(null);
+        const [scrollInfo, setScrollInfo] = React.useState({
+          scrollTop: 0,
+          scrollHeight: 0,
+          clientHeigth: 0,
+        });
+        const [scrollPercentage, setScrollPercentage] = React.useState(0);
+
+        function handleCotainerScroll() {
+          if (!containerRef.current) {
+            return;
+          }
+
+          const { scrollTop, scrollHeight, clientHeight } =
+            containerRef.current;
+
+          setScrollInfo({
+            scrollTop,
+            scrollHeight,
+            clientHeight,
+          });
+
+          const maxScroll = scrollHeight - clientHeight;
+          const percentage = Math.round((scrollTop / maxScroll) * 100);
+
+          setScrollPercentage(percentage);
+        }
+
+        return (
+          <div className="space-y-4">
+            <div
+              ref={containerRef}
+              onScroll={handleCotainerScroll}
+              className="border border-solid border-blue-500 p-4 h-60 overflow-y-auto"
+            >
+              <div className="space-y-4">
+                {Array.from({ length: 20 }).map((_, index) => (
+                  <p key={index} className="p-2 bg-gray-100 rounded">
+                    Item do conteúdo {index + 1}
+                  </p>
+                ))}
+              </div>
+            </div>
+
+            <ul className="space-y-2 list-disc pl-5">
+              <li>Progresso do scroll: {scrollPercentage}% </li>
+              <li>Onde está o scroll (scrollTop): {scrollInfo.scrollTop}px </li>
+              <li>
+                Tamaho do scroll (clientHeight): {scrollInfo.clientHeight}px
+              </li>
+              <li>
+                Tamaho do container (clientHeight): {scrollInfo.clientHeight}px
+              </li>
+            </ul>
           </div>
         );
       }
@@ -38,6 +99,8 @@
         return (
           <main className="p-3 space-y-6">
             <InputFocus />
+            <hr />
+            <ScrollTracker />
           </main>
         );
       }
