@@ -1,6 +1,21 @@
 {
   "users": [
-    {"id": "gus", "name": "Gustavo"},
-    {"id": "hele", "name": "Helena"}
-  ]
+    {
+      "id": "gus",
+      "name": "Gustavo"
+    },
+    {
+      "id": "hele",
+      "name": "Helena"
+    },
+    {
+      "id": "jGg9qFoTk-g",
+      "name": "yasmin"
+    },
+    {
+      "id": "DqLreqzwtlM",
+      "name": "foo bar"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
