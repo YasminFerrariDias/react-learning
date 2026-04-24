@@ -1,5 +1,5 @@
 import React from "react";
-import useUser from "../hooks/use-users"
+import useUser from "../hooks/use-user"
 
 export default function UseInfo() {
   const { user, userRequestStatus, getUser } = useUser();

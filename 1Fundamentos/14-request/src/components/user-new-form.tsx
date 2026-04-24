@@ -1,5 +1,5 @@
 import React from "react"
-import useUser from "../hooks/use-users";
+import useUser from "../hooks/use-user";
 import type { User } from "../models/user";
 
 export default function UserNewForm() {

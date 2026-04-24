@@ -15,6 +15,10 @@
     {
       "id": "DqLreqzwtlM",
       "name": "foo bar"
+    },
+    {
+      "id": "zVDZPMr1jg0",
+      "name": "ketlin"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
