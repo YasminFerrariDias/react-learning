@@ -1,8 +1,8 @@
 import useUsers from "../hooks/use-users";
 
 export default function UsersList() {
-  const {users, isLoadingUsers} = useUsers();
-  
+  const { users, isLoadingUsers } = useUsers();
+
   if (isLoadingUsers) {
     return <div>Carregando usuários...</div>
   }
@@ -11,9 +11,9 @@ export default function UsersList() {
     <ul>
       {users.map(user => (
         <li key={user.id}>
-        Nome: {user.name}
-        / 
-        Username: {user.id}</li>
+          Nome: {user.name}
+          /
+          Username: {user.username}</li>
       ))}
     </ul>
   )

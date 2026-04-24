@@ -15,19 +15,18 @@ export default function UserNewForm() {
     const data = new FormData(formRef.current);
 
     const payload = {
-      id: data.get('id'),
-      name: data.get('name')
+      // id: data.get('id'),
+      name: data.get('name'),
+      username: data.get('username')
     }
 
     await createUser(payload as User)
-
-
   }
 
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
       <div>
-        <input placeholder="Username" name="id" required />
+        <input placeholder="Username" name="username" required />
       </div>
       <div>
         <input placeholder="Nome" name="name" required />

@@ -24,7 +24,7 @@ export default function useUser() {
   async function createUser(payload: User) {
     try {
       setRequestStatus('saving');
-
+console.log(payload)
       await api('/users', { method: 'POST', body: JSON.stringify(payload) });
 
       alert("Usuário criado com sucesso")

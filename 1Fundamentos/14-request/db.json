@@ -2,23 +2,43 @@
   "users": [
     {
       "id": "gus",
-      "name": "Gustavo"
+      "name": "Gustavo",
+      "username": "gus"
     },
     {
       "id": "hele",
-      "name": "Helena"
+      "name": "Helena",
+      "username": "hele"
     },
     {
       "id": "jGg9qFoTk-g",
-      "name": "yasmin"
+      "name": "yasmin",
+      "username": "yas"
     },
     {
       "id": "DqLreqzwtlM",
-      "name": "foo bar"
+      "name": "foo bar",
+      "username": "foo"
     },
     {
       "id": "zVDZPMr1jg0",
-      "name": "ketlin"
+      "name": "ketlin",
+      "username": "ket"
+    },
+    {
+      "id": "adMvrMtzwzM",
+      "name": "Alanis",
+      "username": "ala"
+    },
+    {
+      "id": "ylcPiiUr6vA",
+      "name": "Alanisss",
+      "username": "alaaa"
+    },
+    {
+      "id": "YB-dnZG7CO0",
+      "name": "alanis boeing",
+      "username": "alanis.boeing"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
