@@ -1,0 +1,17 @@
+{
+  "todos": [
+    {
+      "id": "1",
+      "title": "Estudar React"
+    },
+    {
+      "id": "2",
+      "title": "Estudar TanStack Query"
+    },
+    {
+      "title": "teste1",
+      "id": "1Osk2O-iwww"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
