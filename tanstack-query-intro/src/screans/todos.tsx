@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type Todo = {
   id: number;
@@ -11,27 +11,32 @@ export function Todos() {
   const [todoValue, setTodoValue] = useState('')
 
   async function getTodos() {
+    await new Promise(resolve => setTimeout(resolve, 2000))
     const { data } = await axios.get<Todo[]>('http://localhost:3000/todos');
 
     return data;
   }
 
-  const { data: todos } = useQuery({
+  const { data: todos, isLoading, isError, refetch } = useQuery({
     queryKey: ['todos'],
     queryFn: getTodos,
   })
 
-  async function handleAddTood() {
+  async function handleAddTodo() {
+    await new Promise(resolve => setTimeout(resolve, 2000))
+
     await axios.post('http://localhost:3000/todos', {
       title: todoValue
     })
-
-    await getTodos()
   }
 
-  useEffect(() => {
-    getTodos();
-  }, [])
+  const { mutate, isPending } = useMutation({
+    mutationKey: ['create-todo'],
+    mutationFn: handleAddTodo,
+    onSuccess: () => {
+      refetch()
+    }
+  })
 
   return (
     <>
@@ -42,14 +47,18 @@ export function Todos() {
           onChange={(event) => setTodoValue(event.target.value)}
           type="text" placeholder="Digite sua tarefa..."
         />
-        <button type="button" onClick={handleAddTood}>
+        <button disabled={isPending} type="button" onClick={() => mutate()}>
           Adicionar
         </button>
       </div>
       <ul>
-        {todos && todos.map((todo) => (
+        {!isLoading && todos && todos.map((todo) => (
           <li key={(todo.id)}>{todo.title}</li>
         ))}
+
+        {isLoading && <p>carregando...</p>}
+
+        {isError && <p>Erro ao carregar</p>}
       </ul>
     </>
   )
