@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -8,13 +9,17 @@ type Todo = {
 
 export function Todos() {
   const [todoValue, setTodoValue] = useState('')
-  const [data, setData] = useState<Todo[]>([]);
 
   async function getTodos() {
     const { data } = await axios.get<Todo[]>('http://localhost:3000/todos');
 
-    setData(data);
+    return data;
   }
+
+  const { data: todos } = useQuery({
+    queryKey: ['todos'],
+    queryFn: getTodos,
+  })
 
   async function handleAddTood() {
     await axios.post('http://localhost:3000/todos', {
@@ -25,7 +30,6 @@ export function Todos() {
   }
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     getTodos();
   }, [])
 
@@ -43,7 +47,7 @@ export function Todos() {
         </button>
       </div>
       <ul>
-        {data.map((todo) => (
+        {todos && todos.map((todo) => (
           <li key={(todo.id)}>{todo.title}</li>
         ))}
       </ul>
